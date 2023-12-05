@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resultados</title>
+</head>
+<body>
+    <h1>Resultados</h1>
+    {% for resultado in resultados %}
+        <h3>Usuario {{ resultado.user }} (Distancia Euclidiana: {{ resultado.distancia }})</h3>
+        <table border="1">
+            <tr>
+                <th>movieId</th>
+                <th>Rating Usuario</th>
+            </tr>
+            {% for row in resultado.datos_usuario.iterrows() %}
+                <tr>
+                    <td>{{ row[1].movieId }}</td>
+                    <td>{{ row[1].rating }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+        <h4>Calificaciones del Usuario Ingresado para las mismas películas:</h4>
+        <table border="1">
+            <tr>
+                <th>movieId</th>
+                <th>Rating Usuario Ingresado</th>
+            </tr>
+            {% for row in resultado.datos_usuario_ingresado.iterrows() %}
+                <tr>
+                    <td>{{ row[1].movieId }}</td>
+                    <td>{{ row[1].rating }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+        <hr>
+    {% endfor %}
+</body>
+</html>
